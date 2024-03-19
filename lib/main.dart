@@ -1,4 +1,5 @@
 
+import 'package:chatter_botique/utils/themes.dart';
 import 'package:flutter/material.dart';
 import 'views/SplashScreen/spalsh_screen.dart';
 
@@ -12,10 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ChatterBotique',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeMode.dark,
       home: const SplashScreen(),
     );
   }

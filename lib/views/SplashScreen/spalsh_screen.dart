@@ -5,8 +5,11 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Splash Screen', style: Theme.of(context).textTheme.headlineMedium,),
+      ),
+      body: const Column(),
     );
   }
 }
