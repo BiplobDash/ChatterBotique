@@ -9,4 +9,5 @@ class AppImages {
 
   //SVG Images
   static const connectImage = '$iconsPath/raphael_connect.svg';
+  static const plugImage =  '$iconsPath/plug.svg';
 }
