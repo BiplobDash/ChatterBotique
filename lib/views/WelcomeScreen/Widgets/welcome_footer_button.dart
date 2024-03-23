@@ -1,6 +1,7 @@
 import 'package:chatter_botique/utils/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
 class WelcomeFooterButton extends StatelessWidget {
@@ -12,6 +13,7 @@ class WelcomeFooterButton extends StatelessWidget {
     return SlideAction(
       height: 60,
       onSubmit: () {
+        Get.offAllNamed("/auth-screen");
         return null;
       },
       sliderButtonIconSize: 15,
