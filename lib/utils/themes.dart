@@ -16,10 +16,13 @@ var darkTheme = ThemeData(
     primaryContainer: dContainerColor,
     onPrimaryContainer: dOnContainerColor,
   ),
-  inputDecorationTheme: const InputDecorationTheme(
+  inputDecorationTheme: InputDecorationTheme(
     fillColor: dBackgroundColor,
     filled: true,
-    border: InputBorder.none,
+    border: OutlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.circular(10)
+    ),
   ),
   textTheme: const TextTheme(
     headlineLarge: TextStyle(

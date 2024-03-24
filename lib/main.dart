@@ -1,7 +1,7 @@
 import 'package:chatter_botique/utils/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'views/WelcomeScreen/welcome_screen.dart';
+import 'views/HomeScreen/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       getPages: pagePath,
       themeMode: ThemeMode.dark,
-      home: const WelcomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }

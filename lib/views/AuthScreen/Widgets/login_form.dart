@@ -1,5 +1,6 @@
 import 'package:chatter_botique/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -9,7 +10,7 @@ class LoginForm extends StatelessWidget {
     final sz = MediaQuery.sizeOf(context);
     return Column(
       children: [
-         SizedBox(
+        SizedBox(
           height: sz.height * .02,
         ),
         const TextField(
@@ -34,7 +35,13 @@ class LoginForm extends StatelessWidget {
         SizedBox(
           height: sz.height * .05,
         ),
-        PrimaryButton(onTap: (){}, btnName: 'LOGIN', icon: Icons.lock_outline_rounded,),
+        PrimaryButton(
+          onTap: () {
+            Get.offAllNamed("/home-screen");
+          },
+          btnName: 'LOGIN',
+          icon: Icons.lock_outline_rounded,
+        ),
       ],
     );
   }
