@@ -18,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     TabController tabController = TabController(length: 3, vsync: this);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: theme.colorScheme.primaryContainer,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Image.asset(
@@ -56,12 +55,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           children: [
           const ChatList(),
           ListView(
-            children: [
+            children: const [
               ListTile(),
             ],
           ),
           ListView(
-            children: [
+            children: const [
               ListTile(),
             ],
           ),

@@ -16,6 +16,9 @@ var darkTheme = ThemeData(
     primaryContainer: dContainerColor,
     onPrimaryContainer: dOnContainerColor,
   ),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: dContainerColor
+  ),
   inputDecorationTheme: InputDecorationTheme(
     fillColor: dBackgroundColor,
     filled: true,

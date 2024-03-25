@@ -1,6 +1,7 @@
-import 'package:chatter_botique/views/AuthScreen/auth_screen.dart';
-import 'package:chatter_botique/views/HomeScreen/home_screen.dart';
 import 'package:get/get.dart';
+import '../views/AuthScreen/auth_screen.dart';
+import '../views/ChatScreen/chat_screen.dart';
+import '../views/HomeScreen/home_screen.dart';
 
 var pagePath = [
   GetPage(
@@ -11,6 +12,11 @@ var pagePath = [
   GetPage(
     name: "/home-screen",
     page: () => const HomeScreen(),
+    transition: Transition.rightToLeft,
+  ),
+  GetPage(
+    name: "/chat-screen",
+    page: () => const ChatScreen(),
     transition: Transition.rightToLeft,
   ),
 ];
