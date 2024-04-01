@@ -2,6 +2,7 @@ import 'package:chatter_botique/utils/exports.dart';
 import 'package:chatter_botique/views/HomeScreen/Widgets/chats_list.dart';
 import 'package:chatter_botique/views/HomeScreen/Widgets/tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -34,7 +35,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             icon: const Icon(Icons.search),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed("/profile-screen");
+            },
             icon: const Icon(Icons.more_vert_sharp),
           ),
         ],
@@ -50,9 +53,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: TabBarView(
-          controller: tabController,
-          children: [
+        child: TabBarView(controller: tabController, children: [
           const ChatList(),
           ListView(
             children: const [

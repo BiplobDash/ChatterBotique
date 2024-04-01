@@ -12,6 +12,8 @@ dependencies:
   flutter_svg: ^2.0.10+1
   slide_to_act: ^2.0.2
   get: ^4.6.6
+  firebase_core: ^2.27.2
+  firebase_auth: ^4.18.0
 
 dev_dependencies:
   flutter_test:
@@ -22,6 +24,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/svg/
 
   fonts:
     - family: Poppins

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import '../views/AuthScreen/auth_screen.dart';
 import '../views/ChatScreen/chat_screen.dart';
 import '../views/HomeScreen/home_screen.dart';
+import '../views/ProfileScreen/profile_screen.dart';
 
 var pagePath = [
   GetPage(
@@ -17,6 +18,11 @@ var pagePath = [
   GetPage(
     name: "/chat-screen",
     page: () => const ChatScreen(),
+    transition: Transition.rightToLeft,
+  ),
+  GetPage(
+    name: "/profile-screen",
+    page: () => const ProfileScreen(),
     transition: Transition.rightToLeft,
   ),
 ];

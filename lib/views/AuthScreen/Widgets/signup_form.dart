@@ -1,5 +1,7 @@
+import 'package:chatter_botique/controller/auth_controller.dart';
 import 'package:chatter_botique/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignupForm extends StatelessWidget {
   const SignupForm({super.key});
@@ -7,13 +9,20 @@ class SignupForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sz = MediaQuery.sizeOf(context);
+    TextEditingController nameController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passController = TextEditingController();
+    final AuthController authController = Get.put(
+      AuthController(),
+    );
     return Column(
       children: [
-         SizedBox(
+        SizedBox(
           height: sz.height * .02,
         ),
-        const TextField(
-          decoration: InputDecoration(
+        TextField(
+          controller: nameController,
+          decoration: const InputDecoration(
             hintText: 'Full Name',
             prefixIcon: Icon(
               Icons.person,
@@ -23,8 +32,9 @@ class SignupForm extends StatelessWidget {
         SizedBox(
           height: sz.height * .02,
         ),
-        const TextField(
-          decoration: InputDecoration(
+        TextField(
+          controller: emailController,
+          decoration: const InputDecoration(
             hintText: 'E-mail',
             prefixIcon: Icon(
               Icons.alternate_email_outlined,
@@ -34,8 +44,9 @@ class SignupForm extends StatelessWidget {
         SizedBox(
           height: sz.height * .02,
         ),
-        const TextField(
-          decoration: InputDecoration(
+        TextField(
+          controller: passController,
+          decoration: const InputDecoration(
             hintText: 'Password',
             prefixIcon: Icon(
               Icons.password_outlined,
@@ -45,10 +56,19 @@ class SignupForm extends StatelessWidget {
         SizedBox(
           height: sz.height * .05,
         ),
-        PrimaryButton(
-          onTap: () {},
-          btnName: 'SIGNUP',
-          icon: Icons.lock_outline_rounded,
+        Obx(
+          () => authController.isLoading.value
+              ? const CircularProgressIndicator()
+              : PrimaryButton(
+                  onTap: () {
+                    authController.userCreate(
+                      emailController.text,
+                      passController.text,
+                    );
+                  },
+                  btnName: 'SIGNUP',
+                  icon: Icons.lock_outline_rounded,
+                ),
         ),
       ],
     );

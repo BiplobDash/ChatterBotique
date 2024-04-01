@@ -12,7 +12,7 @@ class AuthScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final sz = MediaQuery.sizeOf(context);
     final theme = Theme.of(context);
-    RxBool isLogin = false.obs;
+    RxBool isLogin = true.obs;
 
     return Container(
       // height: sz.height * .4,
