@@ -1,3 +1,4 @@
+import 'package:chatter_botique/views/ProfileScreen/UpdateProfileScreen/update_profile_screen.dart';
 import 'package:get/get.dart';
 import '../views/AuthScreen/auth_screen.dart';
 import '../views/ChatScreen/chat_screen.dart';
@@ -23,6 +24,11 @@ var pagePath = [
   GetPage(
     name: "/profile-screen",
     page: () => const ProfileScreen(),
+    transition: Transition.rightToLeft,
+  ),
+  GetPage(
+    name: "/update-profile",
+    page: () => const UpdateProfileScreen(),
     transition: Transition.rightToLeft,
   ),
 ];

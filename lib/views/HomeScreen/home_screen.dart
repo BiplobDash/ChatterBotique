@@ -1,3 +1,4 @@
+import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/utils/exports.dart';
 import 'package:chatter_botique/views/HomeScreen/Widgets/chats_list.dart';
 import 'package:chatter_botique/views/HomeScreen/Widgets/tabbar.dart';
@@ -17,6 +18,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final theme = Theme.of(context);
     // final sz = MediaQuery.sizeOf(context);
     TabController tabController = TabController(length: 3, vsync: this);
+    // ignore: unused_local_variable
+    final ProfileController profileController = Get.put(ProfileController(),);
     return Scaffold(
       appBar: AppBar(
         leading: Padding(

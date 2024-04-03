@@ -64,6 +64,7 @@ class SignupForm extends StatelessWidget {
                     authController.userCreate(
                       emailController.text,
                       passController.text,
+                      nameController.text,
                     );
                   },
                   btnName: 'SIGNUP',

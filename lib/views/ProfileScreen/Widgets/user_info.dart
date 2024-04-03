@@ -1,6 +1,8 @@
+import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/utils/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class LoginUserInfo extends StatelessWidget {
   const LoginUserInfo({super.key});
@@ -9,6 +11,7 @@ class LoginUserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final sz = MediaQuery.sizeOf(context);
     final theme = Theme.of(context);
+    final ProfileController profileController = Get.put(ProfileController(),);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -34,17 +37,17 @@ class LoginUserInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Jhon Sins',
+                    Obx(() => Text(
+                      profileController.currentUser.value.name!,
                       style: theme.textTheme.bodyLarge,
-                    ),
+                    ),),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'jhon@gmail.com',
+                      profileController.currentUser.value.email!,
                       style: theme.textTheme.labelLarge,
                     ),
                   ],

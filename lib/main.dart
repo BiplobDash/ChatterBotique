@@ -2,7 +2,6 @@ import 'package:chatter_botique/utils/exports.dart';
 import 'package:chatter_botique/views/AuthScreen/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'views/SplashScreen/spalsh_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 

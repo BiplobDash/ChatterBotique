@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1066720216787",
-    "project_id": "company-task-3e026",
-    "storage_bucket": "company-task-3e026.appspot.com"
+    "project_number": "67665072748",
+    "project_id": "chatterbotique",
+    "storage_bucket": "chatterbotique.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1066720216787:android:fd9b17fb85dda4191df626",
+        "mobilesdk_app_id": "1:67665072748:android:c74635b6eb60444496be49",
         "android_client_info": {
           "package_name": "com.example.chatter_botique"
         }
@@ -15,26 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDq6M8Xa2t3bWi90dVzksa2Q83uybw53qw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1066720216787:android:13e305556f4993441df626",
-        "android_client_info": {
-          "package_name": "com.example.company_task"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDq6M8Xa2t3bWi90dVzksa2Q83uybw53qw"
+          "current_key": "AIzaSyDCBk0MS9psrR9Egj2NHQEcR7XJKhGJbC4"
         }
       ],
       "services": {

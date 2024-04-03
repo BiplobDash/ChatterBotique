@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDq6M8Xa2t3bWi90dVzksa2Q83uybw53qw',
-    appId: '1:1066720216787:android:fd9b17fb85dda4191df626',
-    messagingSenderId: '1066720216787',
-    projectId: 'company-task-3e026',
-    storageBucket: 'company-task-3e026.appspot.com',
+    apiKey: 'AIzaSyDCBk0MS9psrR9Egj2NHQEcR7XJKhGJbC4',
+    appId: '1:67665072748:android:c74635b6eb60444496be49',
+    messagingSenderId: '67665072748',
+    projectId: 'chatterbotique',
+    storageBucket: 'chatterbotique.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC2EsiFKIMHsT47pv0VYW6VuSEmsK_UFL4',
-    appId: '1:1066720216787:ios:62b9dc05abac4af71df626',
-    messagingSenderId: '1066720216787',
-    projectId: 'company-task-3e026',
-    storageBucket: 'company-task-3e026.appspot.com',
+    apiKey: 'AIzaSyD1-Ml_trAP1gKBgzDasnRCyALl7SlR1xo',
+    appId: '1:67665072748:ios:bf21466e9da33e9496be49',
+    messagingSenderId: '67665072748',
+    projectId: 'chatterbotique',
+    storageBucket: 'chatterbotique.appspot.com',
     iosBundleId: 'com.example.chatterBotique',
   );
 }
