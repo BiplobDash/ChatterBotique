@@ -1,8 +1,8 @@
 import 'package:chatter_botique/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
-class UpdateProfileScreen extends StatelessWidget {
-  const UpdateProfileScreen({super.key});
+class UserUpdateProfileScreen extends StatelessWidget {
+  const UserUpdateProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
