@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:chatter_botique/controller/image_controller.dart';
 import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +24,10 @@ class ProfileScreen extends StatelessWidget {
         text: profileController.currentUser.value.phoneNumber);
     TextEditingController aboutController =
         TextEditingController(text: profileController.currentUser.value.about);
+    final ImageController imageController = Get.put(
+      ImageController(),
+    );
+    RxString imagePath = "".obs;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -46,10 +53,54 @@ class ProfileScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CircleAvatar(
-                              backgroundColor: theme.colorScheme.background,
-                              radius: 80,
-                              child: const Icon(Icons.image),
+                            Obx(
+                              () => isEdit.value
+                                  ? InkWell(
+                                      onTap: () async {
+                                        imagePath.value =
+                                            await imageController.pickImage();
+                                      },
+                                      child: Container(
+                                        width: 200,
+                                        height: 200,
+                                        decoration: BoxDecoration(
+                                          color: theme.colorScheme.background,
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                        ),
+                                        child: imagePath.value == ""
+                                            ? const Icon(Icons.add)
+                                            : ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
+                                                child: Image.file(
+                                                  File(
+                                                    imagePath.value,
+                                                  ),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                      ),
+                                    )
+                                  : Container(
+                                      width: 200,
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                        color: theme.colorScheme.background,
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                      ),
+                                      child: profileController.currentUser.value.profileImage == ""
+                                          ? const Icon(Icons.image)
+                                          : ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              child: Image.network(
+                                                profileController.currentUser.value.profileImage!,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                    ),
                             ),
                           ],
                         ),
@@ -70,8 +121,14 @@ class ProfileScreen extends StatelessWidget {
                         Obx(
                           () => isEdit.value
                               ? PrimaryButton(
-                                  onTap: () {
+                                  onTap: () async {
                                     isEdit.value = false;
+                                    await profileController.updateProfile(
+                                      imagePath.value,
+                                      nameController.text,
+                                      aboutController.text,
+                                      phoneController.text,
+                                    );
                                   },
                                   btnName: 'Save',
                                   icon: Icons.save,

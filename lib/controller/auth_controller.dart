@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:chatter_botique/model/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,17 +19,21 @@ class AuthController extends GetxController {
       Get.offAllNamed('/home-screen');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        log('No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        log('Wrong password provided for that user.');
       }
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
     isLoading.value = false;
   }
 
-  Future<void> userCreate(String email, String password, String name,) async {
+  Future<void> userCreate(
+    String email,
+    String password,
+    String name,
+  ) async {
     isLoading.value = true;
     try {
       await auth.createUserWithEmailAndPassword(
@@ -39,12 +44,12 @@ class AuthController extends GetxController {
       Get.offAllNamed('/home-screen');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        log('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        log('The account already exists for that email.');
       }
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
     isLoading.value = false;
   }
@@ -65,7 +70,7 @@ class AuthController extends GetxController {
             newUser.toJson(),
           );
     } catch (e) {
-      print(e.toString(),);
+      log(e.toString());
     }
   }
 }
