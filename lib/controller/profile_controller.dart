@@ -36,11 +36,13 @@ class ProfileController extends GetxController {
         name: name,
         about: about,
         phoneNumber: number,
-        profileImage: imageLink,
+        profileImage:
+            imageUrl == "" ? currentUser.value.profileImage : imageLink,
       );
       await db.collection('users').doc(auth.currentUser!.uid).set(
             updateUser.toJson(),
           );
+      await getUserDetails();
     } catch (e) {
       log(
         e.toString(),
@@ -52,7 +54,7 @@ class ProfileController extends GetxController {
   Future<String> uploadFileToFirebase(String imagePath) async {
     final path = "files/$imagePath";
     final file = File(imagePath);
-    if (imagePath != "" && imagePath.isNotEmpty) {
+    if (imagePath != "") {
       try {
         final ref = store.ref().child(path).putFile(file);
         final uploadTask = await ref.whenComplete(() {});

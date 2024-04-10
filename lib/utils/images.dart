@@ -20,4 +20,7 @@ class AppImages {
   static const profileDelete = '$svgPath/delete.svg';
   static const profileMessage = '$svgPath/message.svg';
   static const profileVideo = '$svgPath/video.svg';
+
+  static const defaultProfileUrl =
+      "https://firebasestorage.googleapis.com/v0/b/chatterbotique.appspot.com/o/boy.png?alt=media&token=0a9f61dd-c5b2-43aa-9026-e7d2cb63f68b";
 }

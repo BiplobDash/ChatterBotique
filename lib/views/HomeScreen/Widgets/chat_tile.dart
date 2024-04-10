@@ -33,9 +33,17 @@ class ChatTile extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.asset(
-                  imageUrl,
+                SizedBox(
                   width: 55,
+                  height: 55,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.network(
+                      imageUrl,
+                      fit: BoxFit.cover,
+                      width: 55,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: sz.width * .02,

@@ -104,14 +104,16 @@ class ProfileScreen extends StatelessWidget {
                                       ),
                                       child: profileController.currentUser.value
                                                   .profileImage ==
-                                              "" || profileController.currentUser.value.profileImage == null
+                                              '' || profileController.currentUser.value
+                                                  .profileImage ==
+                                              null
                                           ? const Icon(Icons.image)
                                           : ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(100),
                                               child: Image.network(
                                                 profileController.currentUser
-                                                        .value.profileImage!,
+                                                    .value.profileImage!,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -133,29 +135,29 @@ class ProfileScreen extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        Obx(
-                          () => isEdit.value
-                              ? PrimaryButton(
-                                  onTap: () async {
-                                    await profileController.updateProfile(
-                                      imagePath.value,
-                                      nameController.text,
-                                      aboutController.text,
-                                      phoneController.text,
-                                    );
-                                    isEdit.value = false;
-                                  },
-                                  btnName: 'Save',
-                                  icon: Icons.save,
-                                )
-                              : PrimaryButton(
-                                  onTap: () {
-                                    isEdit.value = true;
-                                  },
-                                  btnName: 'Edit',
-                                  icon: Icons.edit,
-                                ),
-                        ),
+                         Obx(
+                                () => isEdit.value
+                                    ? PrimaryButton(
+                                        onTap: () async {
+                                          await profileController.updateProfile(
+                                            imagePath.value,
+                                            nameController.text,
+                                            aboutController.text,
+                                            phoneController.text,
+                                          );
+                                          isEdit.value = false;
+                                        },
+                                        btnName: 'Save',
+                                        icon: Icons.save,
+                                      )
+                                    : PrimaryButton(
+                                        onTap: () {
+                                          isEdit.value = true;
+                                        },
+                                        btnName: 'Edit',
+                                        icon: Icons.edit,
+                                      ),
+                              ),
                         const SizedBox(
                           height: 20,
                         ),
