@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:chatter_botique/controller/auth_controller.dart';
 import 'package:chatter_botique/controller/image_controller.dart';
 import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/widgets/primary_button.dart';
@@ -27,10 +28,21 @@ class ProfileScreen extends StatelessWidget {
     final ImageController imageController = Get.put(
       ImageController(),
     );
+    final AuthController authController = Get.put(
+      AuthController(),
+    );
     RxString imagePath = "".obs;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              authController.logoutUser();
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -90,13 +102,16 @@ class ProfileScreen extends StatelessWidget {
                                         borderRadius:
                                             BorderRadius.circular(100),
                                       ),
-                                      child: profileController.currentUser.value.profileImage == ""
+                                      child: profileController.currentUser.value
+                                                  .profileImage ==
+                                              "" || profileController.currentUser.value.profileImage == null
                                           ? const Icon(Icons.image)
                                           : ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(100),
                                               child: Image.network(
-                                                profileController.currentUser.value.profileImage!,
+                                                profileController.currentUser
+                                                        .value.profileImage!,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -122,13 +137,13 @@ class ProfileScreen extends StatelessWidget {
                           () => isEdit.value
                               ? PrimaryButton(
                                   onTap: () async {
-                                    isEdit.value = false;
                                     await profileController.updateProfile(
                                       imagePath.value,
                                       nameController.text,
                                       aboutController.text,
                                       phoneController.text,
                                     );
+                                    isEdit.value = false;
                                   },
                                   btnName: 'Save',
                                   icon: Icons.save,

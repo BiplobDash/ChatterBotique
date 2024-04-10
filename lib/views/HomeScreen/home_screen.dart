@@ -18,8 +18,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final theme = Theme.of(context);
     // final sz = MediaQuery.sizeOf(context);
     TabController tabController = TabController(length: 3, vsync: this);
-    // ignore: unused_local_variable
-    final ProfileController profileController = Get.put(ProfileController(),);
+    final ProfileController profileController = Get.put(
+      ProfileController(),
+    );
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -38,7 +39,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             icon: const Icon(Icons.search),
           ),
           IconButton(
-            onPressed: () {
+            onPressed: () async {
+              await profileController.getUserDetails();
               Get.toNamed("/profile-screen");
             },
             icon: const Icon(Icons.more_vert_sharp),

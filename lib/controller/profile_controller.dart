@@ -30,7 +30,7 @@ class ProfileController extends GetxController {
     isLoading.value = true;
     try {
       final imageLink = await uploadFileToFirebase(
-        imageUrl.toString(),
+        imageUrl,
       );
       final updateUser = UserModel(
         name: name,
@@ -42,7 +42,9 @@ class ProfileController extends GetxController {
             updateUser.toJson(),
           );
     } catch (e) {
-      log(e.toString(),);
+      log(
+        e.toString(),
+      );
     }
     isLoading.value = false;
   }
@@ -50,7 +52,7 @@ class ProfileController extends GetxController {
   Future<String> uploadFileToFirebase(String imagePath) async {
     final path = "files/$imagePath";
     final file = File(imagePath);
-    if (imagePath.isNotEmpty) {
+    if (imagePath != "" && imagePath.isNotEmpty) {
       try {
         final ref = store.ref().child(path).putFile(file);
         final uploadTask = await ref.whenComplete(() {});
@@ -58,6 +60,7 @@ class ProfileController extends GetxController {
         return downloadImageUrl;
       } catch (e) {
         log(e.toString());
+        return "";
       }
     }
     return "";
