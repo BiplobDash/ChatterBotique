@@ -49,7 +49,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         bottom: myTabBar(tabController, theme),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed("/contact-screen");
+        },
         backgroundColor: theme.colorScheme.primary,
         child: Icon(
           Icons.add,
