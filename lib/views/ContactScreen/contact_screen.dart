@@ -1,4 +1,5 @@
 import 'package:chatter_botique/controller/contact_controller.dart';
+import 'package:chatter_botique/views/ChatScreen/chat_screen.dart';
 import 'package:chatter_botique/views/ContactScreen/Widgets/new_contact_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -68,15 +69,17 @@ class ContactScreen extends StatelessWidget {
             Obx(
               () => Column(
                 children: contactController.userList
-                    .map((e) => ChatTile(
-                          imageUrl: e.profileImage ?? AppImages.defaultProfileUrl,
-                          name: e.name ?? "User",
-                          lastChat: e.about ?? "Hey there",
-                          lastTime: "08: 55 AM",
-                          onTap: () {
-                            Get.toNamed("/chat-screen");
-                          },
-                        ))
+                    .map(
+                      (e) => ChatTile(
+                        imageUrl: e.profileImage ?? AppImages.defaultProfileUrl,
+                        name: e.name ?? "User",
+                        lastChat: e.about ?? "Hey there",
+                        lastTime: "08: 55 AM",
+                        onTap: () {
+                          Get.to(() => ChatScreen(userModel: e));
+                        },
+                      ),
+                    )
                     .toList(),
               ),
             ),

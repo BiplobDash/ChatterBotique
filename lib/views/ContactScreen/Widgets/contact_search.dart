@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class ContactSearch extends StatelessWidget {
@@ -17,7 +19,7 @@ class ContactSearch extends StatelessWidget {
             child: TextField(
               textInputAction: TextInputAction.search,
               onSubmitted: (value) {
-                print(value);
+                log(value);
               },
               decoration: const InputDecoration(
                 hintText: 'Search Contact',
