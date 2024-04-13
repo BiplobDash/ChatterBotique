@@ -1,10 +1,13 @@
 import 'package:chatter_botique/controller/auth_controller.dart';
+import 'package:chatter_botique/model/user_model.dart';
+import 'package:chatter_botique/utils/exports.dart';
 import 'package:chatter_botique/views/UserProfileScreen/Widgets/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserProfileScreen extends StatelessWidget {
-  const UserProfileScreen({super.key});
+  final UserModel userModel;
+  const UserProfileScreen({super.key, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,12 @@ class UserProfileScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            const LoginUserInfo(),
+            LoginUserInfo(
+              profileImage:
+                  userModel.profileImage ?? AppImages.defaultProfileUrl,
+              userName: userModel.name ?? 'User',
+              userEmail: userModel.email ?? 'Email',
+            ),
             const Spacer(),
             ElevatedButton(
               onPressed: () {

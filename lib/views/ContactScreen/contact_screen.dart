@@ -1,4 +1,5 @@
 import 'package:chatter_botique/controller/contact_controller.dart';
+import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/views/ChatScreen/chat_screen.dart';
 import 'package:chatter_botique/views/ContactScreen/Widgets/new_contact_tile.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,12 @@ class ContactScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     RxBool isSearchEnable = false.obs;
-    final ContactController contactController = Get.put(ContactController());
+    final ContactController contactController = Get.put(
+      ContactController(),
+    );
+    final ProfileController profileController = Get.put(
+      ProfileController(),
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text('Select Contact'),
@@ -74,7 +80,10 @@ class ContactScreen extends StatelessWidget {
                         imageUrl: e.profileImage ?? AppImages.defaultProfileUrl,
                         name: e.name ?? "User",
                         lastChat: e.about ?? "Hey there",
-                        lastTime: "08: 55 AM",
+                        lastTime:
+                            e.email == profileController.currentUser.value.email
+                                ? "You"
+                                : "",
                         onTap: () {
                           Get.to(() => ChatScreen(userModel: e));
                         },

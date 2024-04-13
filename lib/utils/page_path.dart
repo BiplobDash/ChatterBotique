@@ -4,7 +4,6 @@ import '../views/AuthScreen/auth_screen.dart';
 import '../views/HomeScreen/home_screen.dart';
 import '../views/ProfileScreen/profile_screen.dart';
 import '../views/UserProfileScreen/UserUpdateProfileScreen/update_profile_screen.dart';
-import '../views/UserProfileScreen/profile_screen.dart';
 
 var pagePath = [
   GetPage(
@@ -27,11 +26,11 @@ var pagePath = [
     page: () => const ProfileScreen(),
     transition: Transition.rightToLeft,
   ),
-  GetPage(
-    name: "/userProfile-screen",
-    page: () => const UserProfileScreen(),
-    transition: Transition.rightToLeft,
-  ),
+  // GetPage(
+  //   name: "/userProfile-screen",
+  //   page: () => const UserProfileScreen(),
+  //   transition: Transition.rightToLeft,
+  // ),
   GetPage(
     name: "/userUpdate-profile",
     page: () => const UserUpdateProfileScreen(),

@@ -4,6 +4,7 @@ import 'package:chatter_botique/model/chat_model.dart';
 import 'package:chatter_botique/model/user_model.dart';
 import 'package:chatter_botique/utils/exports.dart';
 import 'package:chatter_botique/views/ChatScreen/Widgets/chat_bubble.dart';
+import 'package:chatter_botique/views/UserProfileScreen/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -22,22 +23,36 @@ class ChatScreen extends StatelessWidget {
     TextEditingController messageController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Image.asset(AppImages.boyImage),
+        leading: InkWell(
+          onTap: () {
+            Get.to(() => UserProfileScreen(userModel: userModel,),);
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Image.asset(AppImages.boyImage),
+          ),
         ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              userModel.name ?? 'User',
-              style: theme.textTheme.bodyLarge,
-            ),
-            Text(
-              'Online',
-              style: theme.textTheme.labelSmall,
-            ),
-          ],
+        title: InkWell(
+          onTap: () {
+            Get.to(() => UserProfileScreen(userModel: userModel,),);
+          },
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    userModel.name ?? 'User',
+                    style: theme.textTheme.bodyLarge,
+                  ),
+                  Text(
+                    'Online',
+                    style: theme.textTheme.labelSmall,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
         actions: [
           IconButton(
@@ -91,6 +106,7 @@ class ChatScreen extends StatelessWidget {
                   chatController.sendMessage(
                     userModel.id!,
                     messageController.text,
+                    userModel,
                   );
                   messageController.clear();
                 }

@@ -1,17 +1,22 @@
-import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/utils/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 class LoginUserInfo extends StatelessWidget {
-  const LoginUserInfo({super.key});
+  final String profileImage;
+  final String userName;
+  final String userEmail;
+  const LoginUserInfo({
+    super.key,
+    required this.profileImage,
+    required this.userName,
+    required this.userEmail,
+  });
 
   @override
   Widget build(BuildContext context) {
     final sz = MediaQuery.sizeOf(context);
     final theme = Theme.of(context);
-    final ProfileController profileController = Get.put(ProfileController(),);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -26,8 +31,16 @@ class LoginUserInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      AppImages.boyImage,
+                    SizedBox(
+                      width: 150,
+                      height: 150,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image.network(
+                          profileImage,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -37,17 +50,17 @@ class LoginUserInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Obx(() => Text(
-                      profileController.currentUser.value.name!,
+                    Text(
+                      userName,
                       style: theme.textTheme.bodyLarge,
-                    ),),
+                    ),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      profileController.currentUser.value.email!,
+                      userEmail,
                       style: theme.textTheme.labelLarge,
                     ),
                   ],
