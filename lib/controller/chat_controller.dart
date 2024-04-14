@@ -6,6 +6,7 @@ import 'package:chatter_botique/model/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class ChatController extends GetxController {
@@ -24,11 +25,38 @@ class ChatController extends GetxController {
     }
   }
 
+  UserModel getSender(UserModel currentUser, UserModel targetUser) {
+    String currentUserId = currentUser.id!;
+    String targetUserId = targetUser.id!;
+    if (currentUserId[0].codeUnitAt(0) > targetUserId[0].codeUnitAt(0)) {
+      return currentUser;
+    } else {
+      return targetUser;
+    }
+  }
+
+  UserModel getReceiver(UserModel currentUser, UserModel targetUser) {
+    String currentUserId = currentUser.id!;
+    String targetUserId = targetUser.id!;
+    if (currentUserId[0].codeUnitAt(0) > targetUserId[0].codeUnitAt(0)) {
+      return targetUser;
+    } else {
+      return currentUser;
+    }
+  }
+
+  
   Future<void> sendMessage(
       String targetUserId, String message, UserModel targetUser) async {
     isLoading.value = true;
-    String roomId = getRoomId(targetUserId);
     String chatId = uuid.v6();
+    String roomId = getRoomId(targetUserId);
+    DateTime timeStamp = DateTime.now();
+    String nowTime = DateFormat('hh:mm a').format(timeStamp);
+    UserModel sender =
+        getSender(profileController.currentUser.value, targetUser);
+    UserModel receiver = getReceiver(profileController.currentUser.value, targetUser);
+
     var newChat = ChatModel(
       id: chatId,
       message: message,
@@ -41,14 +69,14 @@ class ChatController extends GetxController {
     var roomDetails = ChatRoomModel(
       id: roomId,
       lastMessage: message,
-      lastMessageTimeStamp: DateTime.now().toString(),
-      sender: profileController.currentUser.value,
-      receiver: targetUser,
+      lastMessageTimeStamp: nowTime,
+      sender: sender,
+      receiver: receiver,
       timestamp: DateTime.now().toString(),
       unReadMessNo: 0,
     );
+
     try {
-      await db.collection('chats').doc(roomId).set(roomDetails.toJson(),);
       await db
           .collection('chats')
           .doc(roomId)
@@ -56,6 +84,9 @@ class ChatController extends GetxController {
           .doc(chatId)
           .set(
             newChat.toJson(),
+          );
+          await db.collection('chats').doc(roomId).set(
+            roomDetails.toJson(),
           );
     } catch (e) {
       log(

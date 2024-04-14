@@ -1,3 +1,4 @@
+import 'package:chatter_botique/controller/contact_controller.dart';
 import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/utils/exports.dart';
 import 'package:chatter_botique/views/HomeScreen/Widgets/chats_list.dart';
@@ -21,6 +22,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final ProfileController profileController = Get.put(
       ProfileController(),
     );
+    final ContactController contactController = Get.put(
+      ContactController(),
+    );
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -35,7 +39,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              await contactController.getChatRoomList();
+            },
             icon: const Icon(Icons.search),
           ),
           IconButton(
