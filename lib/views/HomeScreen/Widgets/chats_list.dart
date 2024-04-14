@@ -19,32 +19,39 @@ class ChatList extends StatelessWidget {
       ProfileController(),
     );
     return RefreshIndicator(
-        onRefresh: () async {
-          await contactController.getChatRoomList();
-        },
-        child: Obx(
-          () => ListView(
-              children: contactController.chatRoomList
-                  .map(
-                    (e) => ChatTile(
-                      imageUrl: e.receiver!.profileImage ??
+      onRefresh: () async {
+        await contactController.getChatRoomList();
+      },
+      child: Obx(
+        () => ListView(
+          children: contactController.chatRoomList
+              .map(
+                (e) => ChatTile(
+                  imageUrl:
+                      (e.receiver!.id == profileController.currentUser.value.id
+                              ? e.sender!.profileImage
+                              : e.receiver!.profileImage) ??
                           AppImages.defaultProfileUrl,
-                      name: e.receiver!.name ?? 'User Name',
-                      lastChat: e.lastMessage ?? 'Last Message',
-                      lastTime: e.lastMessageTimeStamp ?? 'Last time',
-                      onTap: () {
-                        Get.to(
-                          () => ChatScreen(
-                            userModel: (e.receiver!.id ==
-                                    profileController.currentUser.value.id
-                                ? e.sender
-                                : e.receiver)!,
-                          ),
-                        );
-                      },
-                    ),
-                  )
-                  .toList()),
-        ));
+                  name:  (e.receiver!.id == profileController.currentUser.value.id
+                              ? e.sender!.name
+                              : e.receiver!.name) ?? 'User Name',
+                  lastChat: e.lastMessage ?? 'Last Message',
+                  lastTime: e.lastMessageTimeStamp ?? 'Last time',
+                  onTap: () {
+                    Get.to(
+                      () => ChatScreen(
+                        userModel: (e.receiver!.id ==
+                                profileController.currentUser.value.id
+                            ? e.sender
+                            : e.receiver)!,
+                      ),
+                    );
+                  },
+                ),
+              )
+              .toList(),
+        ),
+      ),
+    );
   }
 }
