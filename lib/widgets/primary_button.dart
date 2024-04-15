@@ -6,7 +6,9 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback onTap;
   const PrimaryButton({
     super.key,
-    required this.onTap, required this.btnName, required this.icon,
+    required this.onTap,
+    required this.btnName,
+    required this.icon,
   });
 
   @override
@@ -14,6 +16,8 @@ class PrimaryButton extends StatelessWidget {
     final sz = MediaQuery.sizeOf(context);
     final theme = Theme.of(context);
     return InkWell(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(8),

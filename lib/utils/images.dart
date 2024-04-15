@@ -15,6 +15,7 @@ class AppImages {
   static const micImage = '$iconsPath/mic.svg';
   static const gallaryImage = '$iconsPath/gallary.svg';
   static const sendImage = '$iconsPath/send.svg';
+  static const emojiImage = '$iconsPath/emoji.svg';
 
   static const profileAudioCalll = '$svgPath/call.svg';
   static const profileDelete = '$svgPath/delete.svg';

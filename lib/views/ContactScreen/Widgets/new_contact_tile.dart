@@ -15,6 +15,8 @@ class NewContactTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return InkWell(
+      splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(10),

@@ -32,44 +32,49 @@ class ChatTile extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: 55,
-                  height: 55,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: CachedNetworkImage(
-                      imageUrl: imageUrl,
-                      fit: BoxFit.cover,
-                      width: 55,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+            Expanded(
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 55,
+                    height: 55,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: CachedNetworkImage(
+                        imageUrl: imageUrl,
+                        fit: BoxFit.cover,
+                        width: 55,
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: sz.width * .02,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      name,
-                      style: theme.textTheme.bodyLarge,
+                  SizedBox(
+                    width: sz.width * .02,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          name,
+                          style: theme.textTheme.bodyLarge,
+                        ),
+                        SizedBox(
+                          height: sz.height * .001,
+                        ),
+                        Text(
+                          lastChat,
+                          maxLines: 1,
+                          style: theme.textTheme.labelMedium,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: sz.height * .001,
-                    ),
-                    Text(
-                      lastChat,
-                      style: theme.textTheme.labelMedium,
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
             const SizedBox(width: 5,),
             Text(

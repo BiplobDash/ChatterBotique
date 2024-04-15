@@ -31,6 +31,8 @@ class AuthScreenBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       InkWell(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onTap: () {
                           isLogin.value = true;
                         },
@@ -61,6 +63,8 @@ class AuthScreenBody extends StatelessWidget {
                         ),
                       ),
                       InkWell(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onTap: () {
                           isLogin.value = false;
                         },
