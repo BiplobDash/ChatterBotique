@@ -14,6 +14,13 @@ class ContactController extends GetxController {
 
   RxBool isLoading = false.obs;
 
+  @override
+  void onInit() async {
+    await getUserList();
+    await getChatRoomList();
+    super.onInit();
+  }
+
   Future<void> getUserList() async {
     isLoading.value = true;
     try {
@@ -57,10 +64,35 @@ class ContactController extends GetxController {
         .toList();
   }
 
-  @override
-  void onInit() async {
-    await getUserList();
-    await getChatRoomList();
-    super.onInit();
+  Future<void> saveContact(UserModel user) async {
+    try {
+      await db
+          .collection('users')
+          .doc(auth.currentUser!.uid)
+          .collection('contacts')
+          .doc(user.id)
+          .set(
+            user.toJson(),
+          );
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Stream<List<UserModel>> getContacts() {
+    return db
+        .collection('users')
+        .doc(auth.currentUser!.uid)
+        .collection('contacts')
+        .snapshots()
+        .map(
+          (snapshot) => snapshot.docs
+              .map(
+                (e) => UserModel.fromJson(
+                  e.data(),
+                ),
+              )
+              .toList(),
+        );
   }
 }

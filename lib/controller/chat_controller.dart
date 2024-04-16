@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:chatter_botique/controller/contact_controller.dart';
 import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/model/chat_model.dart';
 import 'package:chatter_botique/model/chat_room_model.dart';
@@ -16,6 +17,7 @@ class ChatController extends GetxController {
   var uuid = const Uuid();
   RxString selectedImagePath = "".obs;
   final ProfileController profileController = Get.put(ProfileController());
+  final ContactController contactController = Get.put(ContactController());
 
   String getRoomId(String targetUserId) {
     String currentUserId = auth.currentUser!.uid;
@@ -95,6 +97,14 @@ class ChatController extends GetxController {
       await db.collection('chats').doc(roomId).set(
             roomDetails.toJson(),
           );
+      await db
+          .collection('users')
+          .doc(auth.currentUser!.uid)
+          .collection('contacts')
+          .doc(targetUser.id)
+          .set(
+            targetUser.toJson(),
+          );
     } catch (e) {
       log(
         e.toString(),
@@ -121,4 +131,5 @@ class ChatController extends GetxController {
               .toList(),
         );
   }
+
 }

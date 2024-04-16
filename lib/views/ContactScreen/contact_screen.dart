@@ -2,6 +2,7 @@ import 'package:chatter_botique/controller/contact_controller.dart';
 import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/views/ChatScreen/chat_screen.dart';
 import 'package:chatter_botique/views/ContactScreen/Widgets/new_contact_tile.dart';
+import 'package:chatter_botique/views/GroupScreen/NewGroupScreen/new_group_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../utils/exports.dart';
@@ -60,7 +61,11 @@ class ContactScreen extends StatelessWidget {
             NewContactTile(
               btnName: "New Group",
               icon: Icons.group_add,
-              onTap: () {},
+              onTap: () {
+                Get.to(
+                  () => const NewGroupScreen(),
+                );
+              },
             ),
             const SizedBox(
               height: 20,
