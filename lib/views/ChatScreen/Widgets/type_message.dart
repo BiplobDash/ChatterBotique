@@ -1,10 +1,10 @@
 import 'package:chatter_botique/controller/chat_controller.dart';
 import 'package:chatter_botique/controller/image_controller.dart';
 import 'package:chatter_botique/model/user_model.dart';
+import 'package:chatter_botique/widgets/imagepicker_bottomsheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
 import '../../../utils/exports.dart';
 
 class TypeMessage extends StatelessWidget {
@@ -54,8 +54,7 @@ class TypeMessage extends StatelessWidget {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
-              chatController.selectedImagePath.value =
-                  await imageController.pickImage();
+              imagePickerBottomSheet(theme, chatController, imageController);
             },
             child: SvgPicture.asset(
               AppImages.gallaryImage,
@@ -71,7 +70,8 @@ class TypeMessage extends StatelessWidget {
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () {
-                    if (messageController.text.isNotEmpty || chatController.selectedImagePath.value.isNotEmpty) {
+                    if (messageController.text.isNotEmpty ||
+                        chatController.selectedImagePath.value.isNotEmpty) {
                       chatController.sendMessage(
                         userModel.id!,
                         messageController.text,
@@ -81,10 +81,12 @@ class TypeMessage extends StatelessWidget {
                       message.value = "";
                     }
                   },
-                  child: chatController.isLoading.value ? const CircularProgressIndicator() : SvgPicture.asset(
-                    AppImages.sendImage,
-                    width: sz.width * .08,
-                  ),
+                  child: chatController.isLoading.value
+                      ? const CircularProgressIndicator()
+                      : SvgPicture.asset(
+                          AppImages.sendImage,
+                          width: sz.width * .08,
+                        ),
                 )
               : SvgPicture.asset(
                   AppImages.micImage,

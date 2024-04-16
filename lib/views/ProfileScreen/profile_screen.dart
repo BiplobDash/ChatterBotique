@@ -7,6 +7,7 @@ import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -72,8 +73,8 @@ class ProfileScreen extends StatelessWidget {
                                       splashColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        imagePath.value =
-                                            await imageController.pickImage();
+                                        imagePath.value = await imageController
+                                            .pickImage(ImageSource.gallery);
                                       },
                                       child: Container(
                                         width: 200,
