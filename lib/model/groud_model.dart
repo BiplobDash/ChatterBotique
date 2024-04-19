@@ -1,4 +1,3 @@
-
 import 'package:chatter_botique/model/user_model.dart';
 
 class GroupModelUser {
@@ -16,46 +15,65 @@ class GroupModelUser {
   int? unReadCount;
   String? timeStamp;
 
-  GroupModelUser({this.id, this.name, this.discription, this.profileUrl, this.members, this.createdAt, this.createdBy, this.status, this.lastMessage, this.lastMessageTime, this.lastMessageBy, this.unReadCount, this.timeStamp});
+  GroupModelUser(
+      {this.id,
+      this.name,
+      this.discription,
+      this.profileUrl,
+      this.members,
+      this.createdAt,
+      this.createdBy,
+      this.status,
+      this.lastMessage,
+      this.lastMessageTime,
+      this.lastMessageBy,
+      this.unReadCount,
+      this.timeStamp});
 
   GroupModelUser.fromJson(Map<String, dynamic> json) {
-    if(json["id"] is String) {
+    if (json["id"] is String) {
       id = json["id"];
     }
-    if(json["name"] is String) {
+    if (json["name"] is String) {
       name = json["name"];
     }
-    if(json["discription"] is String) {
+    if (json["discription"] is String) {
       discription = json["discription"];
     }
-    if(json["profileUrl"] is String) {
+    if (json["profileUrl"] is String) {
       profileUrl = json["profileUrl"];
     }
-    if(json["members"] is Map) {
-     json["members"] == null ? null : UserModel.fromJson(json["members"]);
+    if (json["members"] != null) {
+      members = List<UserModel>.from(
+        json["members"].map(
+          (memberJson) => UserModel.fromJson(memberJson),
+        ),
+      );
+    } else {
+      members = [];
     }
-    if(json["createdAt"] is String) {
+    if (json["createdAt"] is String) {
       createdAt = json["createdAt"];
     }
-    if(json["createdBy"] is String) {
+    if (json["createdBy"] is String) {
       createdBy = json["createdBy"];
     }
-    if(json["status"] is String) {
+    if (json["status"] is String) {
       status = json["status"];
     }
-    if(json["lastMessage"] is String) {
+    if (json["lastMessage"] is String) {
       lastMessage = json["lastMessage"];
     }
-    if(json["lastMessageTime"] is String) {
+    if (json["lastMessageTime"] is String) {
       lastMessageTime = json["lastMessageTime"];
     }
-    if(json["lastMessageBy"] is String) {
+    if (json["lastMessageBy"] is String) {
       lastMessageBy = json["lastMessageBy"];
     }
-    if(json["unReadCount"] is int) {
+    if (json["unReadCount"] is int) {
       unReadCount = json["unReadCount"];
     }
-    if(json["timeStamp"] is String) {
+    if (json["timeStamp"] is String) {
       timeStamp = json["timeStamp"];
     }
   }
@@ -66,7 +84,7 @@ class GroupModelUser {
     data["name"] = name;
     data["discription"] = discription;
     data["profileUrl"] = profileUrl;
-    if(members != null) {
+    if (members != null) {
       data["members"] = members;
     }
     data["createdAt"] = createdAt;
