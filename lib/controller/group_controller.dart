@@ -83,7 +83,6 @@ class GroupController extends GetxController {
       String message, String groupId, String imagePath) async {
     var chatId = uuid.v6();
     String imageUrl = "";
-    print("$message $groupId");
     if (selectedImagePath.value.isNotEmpty) {
       imageUrl =
           await profileController.uploadFileToFirebase(selectedImagePath.value);

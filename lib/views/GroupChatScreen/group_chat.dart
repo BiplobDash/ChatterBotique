@@ -102,8 +102,6 @@ class GroupChatScreen extends StatelessWidget {
                   StreamBuilder<List<ChatModel>>(
                       stream: groupController.getGroupMessages(groupModel.id!),
                       builder: (context, snapshot) {
-                        print(groupModel.id);
-                        print(snapshot.data);
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const Center(
@@ -115,7 +113,7 @@ class GroupChatScreen extends StatelessWidget {
                             child: Text("Error: ${snapshot.error}"),
                           );
                         }
-                        if (snapshot.data == null) {
+                        if (snapshot.data == null || snapshot.data!.isEmpty) {
                           return Center(
                             child: Text('No Message',
                                 style: theme.textTheme.bodyLarge),
