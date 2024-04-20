@@ -54,7 +54,7 @@ class TypeMessage extends StatelessWidget {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
-              imagePickerBottomSheet(theme, chatController, imageController);
+              imagePickerBottomSheet(theme, chatController.selectedImagePath, imageController);
             },
             child: SvgPicture.asset(
               AppImages.gallaryImage,

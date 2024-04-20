@@ -1,11 +1,10 @@
-import 'package:chatter_botique/controller/chat_controller.dart';
 import 'package:chatter_botique/controller/group_controller.dart';
 import 'package:chatter_botique/controller/image_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-Future<dynamic> imagePickerBottomSheet(ThemeData theme, ChatController chatController, ImageController imageController) {
+Future<dynamic> imagePickerBottomSheet(ThemeData theme, RxString  imagePath, ImageController imageController) {
     return Get.bottomSheet(Container(
       height: 150,
       decoration: BoxDecoration(
@@ -20,7 +19,7 @@ Future<dynamic> imagePickerBottomSheet(ThemeData theme, ChatController chatContr
         children: [
           InkWell(
             onTap: () async {
-              chatController.selectedImagePath.value =
+             imagePath.value =
                   await imageController.pickImage(ImageSource.camera);
               Get.back();
             },
@@ -38,7 +37,7 @@ Future<dynamic> imagePickerBottomSheet(ThemeData theme, ChatController chatContr
           ),
           InkWell(
             onTap: () async {
-              chatController.selectedImagePath.value =
+              imagePath.value =
                   await imageController.pickImage(ImageSource.gallery);
               Get.back();
             },

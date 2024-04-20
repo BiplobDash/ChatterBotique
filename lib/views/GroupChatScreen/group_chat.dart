@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:chatter_botique/controller/chat_controller.dart';
 import 'package:chatter_botique/controller/group_controller.dart';
 import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/model/chat_model.dart';
@@ -8,6 +7,7 @@ import 'package:chatter_botique/model/groud_model.dart';
 import 'package:chatter_botique/utils/exports.dart';
 import 'package:chatter_botique/views/ChatScreen/Widgets/chat_bubble.dart';
 import 'package:chatter_botique/views/GroupChatScreen/Widgets/group_type_message.dart';
+import 'package:chatter_botique/views/GroupInfoScreen/group_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -19,7 +19,6 @@ class GroupChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final ChatController chatController = Get.put(ChatController());
     final ProfileController profileController = Get.put(ProfileController());
     final GroupController groupController = Get.put(GroupController());
     return Scaffold(
@@ -28,11 +27,9 @@ class GroupChatScreen extends StatelessWidget {
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           onTap: () {
-            // Get.to(
-            //   () => UserProfileScreen(
-            //     userModel: userModel,
-            //   ),
-            // );
+            Get.to(() => GroupInfoScreen(
+                  groupModelUser: groupModel,
+                ));
           },
           child: Padding(
             padding: const EdgeInsets.all(8),
@@ -140,7 +137,7 @@ class GroupChatScreen extends StatelessWidget {
                         }
                       }),
                   Obx(
-                    () => (chatController.selectedImagePath.value != "")
+                    () => (groupController.selectedImagePath.value != "")
                         ? Positioned(
                             bottom: 0,
                             left: 0,
@@ -155,7 +152,7 @@ class GroupChatScreen extends StatelessWidget {
                                     color: theme.colorScheme.primaryContainer,
                                     image: DecorationImage(
                                       image: FileImage(
-                                        File(chatController
+                                        File(groupController
                                             .selectedImagePath.value),
                                       ),
                                       fit: BoxFit.contain,
@@ -166,7 +163,7 @@ class GroupChatScreen extends StatelessWidget {
                                   right: 0,
                                   child: IconButton(
                                     onPressed: () {
-                                      chatController.selectedImagePath.value =
+                                      groupController.selectedImagePath.value =
                                           '';
                                     },
                                     icon: const Icon(Icons.close),

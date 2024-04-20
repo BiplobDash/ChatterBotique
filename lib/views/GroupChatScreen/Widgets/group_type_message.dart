@@ -54,7 +54,7 @@ class GroupTypeMessage extends StatelessWidget {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
-              imagePickerBottomSheetGroup(theme, groupController, imageController);
+              imagePickerBottomSheet(theme, groupController.selectedImagePath, imageController);
             },
             child: SvgPicture.asset(
               AppImages.gallaryImage,
@@ -73,7 +73,6 @@ class GroupTypeMessage extends StatelessWidget {
                     onTap: () {
                       groupController.sendGroupMessage(
                           messageController.text, groupModel.id!, "");
-                      print(messageController.text);
                       messageController.clear();
                       message.value = "";
                     },

@@ -83,6 +83,7 @@ class GroupController extends GetxController {
       String message, String groupId, String imagePath) async {
     var chatId = uuid.v6();
     String imageUrl = "";
+    isLoading.value = true;
     if (selectedImagePath.value.isNotEmpty) {
       imageUrl =
           await profileController.uploadFileToFirebase(selectedImagePath.value);
@@ -103,6 +104,8 @@ class GroupController extends GetxController {
         .set(
           newChat.toJson(),
         );
+    selectedImagePath.value = "";
+    isLoading.value = false;
   }
 
   Stream<List<ChatModel>> getGroupMessages(String groupId) {
@@ -121,6 +124,15 @@ class GroupController extends GetxController {
               )
               .toList(),
         );
+  }
+
+  Future<void> addMemberToGroup(String groupId, UserModel userModel) async {
+    isLoading.value = true;
+    await db.collection("groups").doc(groupId).update({
+      "members": FieldValue.arrayUnion([userModel.toJson(),],),
+    });
+    getGroups();
+    isLoading.value = false;
   }
 
   @override
