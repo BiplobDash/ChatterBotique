@@ -1,5 +1,6 @@
 import 'package:chatter_botique/controller/contact_controller.dart';
 import 'package:chatter_botique/controller/profile_controller.dart';
+import 'package:chatter_botique/controller/status_controller.dart';
 import 'package:chatter_botique/utils/exports.dart';
 import 'package:chatter_botique/views/GroupScreen/group_screen.dart';
 import 'package:chatter_botique/views/HomeScreen/Widgets/chats_list.dart';
@@ -26,6 +27,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final ContactController contactController = Get.put(
       ContactController(),
     );
+    // ignore: unused_local_variable
+    final StatusController statusController = Get.put<StatusController>(StatusController());
     return Scaffold(
       appBar: AppBar(
         leading: Padding(

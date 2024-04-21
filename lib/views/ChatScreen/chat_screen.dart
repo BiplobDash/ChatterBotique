@@ -67,10 +67,27 @@ class ChatScreen extends StatelessWidget {
                     userModel.name ?? 'User',
                     style: theme.textTheme.bodyLarge,
                   ),
-                  Text(
-                    'Online',
-                    style: theme.textTheme.labelSmall,
-                  ),
+                  StreamBuilder(
+                      stream: chatController.getStatus(userModel.id!),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Text(
+                            "............",
+                            style: theme.textTheme.labelSmall,
+                          );
+                        } else {
+                          return Text(
+                            snapshot.data!.status ?? "",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: snapshot.data!.status == "Online"
+                                  ? Colors.green
+                                  : theme.colorScheme.onPrimaryContainer,
+                            ),
+                          );
+                        }
+                      })
                 ],
               ),
             ],
@@ -178,7 +195,9 @@ class ChatScreen extends StatelessWidget {
                   ),
                 ],
               )),
-              TypeMessage(userModel: userModel,),
+              TypeMessage(
+                userModel: userModel,
+              ),
             ],
           )),
     );

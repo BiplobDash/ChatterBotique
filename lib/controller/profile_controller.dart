@@ -37,6 +37,7 @@ class ProfileController extends GetxController {
         about: about,
         phoneNumber: number,
         id: auth.currentUser!.uid,
+        email: auth.currentUser!.email,
         profileImage:
             imageUrl == "" ? currentUser.value.profileImage : imageLink,
       );
