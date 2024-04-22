@@ -1,3 +1,4 @@
+import 'package:chatter_botique/controller/call_controller.dart';
 import 'package:chatter_botique/utils/exports.dart';
 import 'package:chatter_botique/views/AuthScreen/auth_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,11 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
+    final CallController callController = Get.put(CallController());
     return GetMaterialApp(
       title: 'ChatterBotique',
-      builder:  FToastBuilder(),
+      builder: FToastBuilder(),
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,

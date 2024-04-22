@@ -1,6 +1,6 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chatter_botique/controller/call_controller.dart';
 import 'package:chatter_botique/controller/chat_controller.dart';
 import 'package:chatter_botique/controller/profile_controller.dart';
 import 'package:chatter_botique/model/chat_model.dart';
@@ -22,6 +22,7 @@ class ChatScreen extends StatelessWidget {
     final theme = Theme.of(context);
     final ChatController chatController = Get.put(ChatController());
     final ProfileController profileController = Get.put(ProfileController());
+    final CallController callController = Get.put(CallController());
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -95,7 +96,12 @@ class ChatScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              callController.callAction(
+                userModel,
+                profileController.currentUser.value,
+              );
+            },
             icon: const Icon(Icons.phone),
           ),
           IconButton(
